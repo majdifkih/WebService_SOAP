@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://example.com/departement"
+           targetNamespace="http://example.com/departement"
+           elementFormDefault="qualified">
+
+    <!-- Définition du type CadreAdmin -->
+    <xs:complexType name="CadreAdminType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="prenom" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="departement" type="xs:string"/>
+            <!-- Ajoutez d'autres éléments au besoin -->
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Définition de la demande pour récupérer un CadreAdmin par son ID -->
+    <xs:element name="getCadreAdminByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Définition de la réponse pour récupérer un CadreAdmin par son ID -->
+    <xs:element name="getCadreAdminByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="cadreAdmin" type="tns:CadreAdminType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Définition de la demande pour mettre à jour un CadreAdmin -->
+    <xs:element name="updateCadreAdminRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="cadreAdmin" type="tns:CadreAdminType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <!-- Définition de la demande pour récupérer tous les Cadres Administratifs -->
+    <xs:element name="getAllCadreAdminRequest">
+        <xs:complexType>
+            <!-- Aucun paramètre nécessaire pour cette opération -->
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Définition de la réponse pour récupérer tous les Cadres Administratifs -->
+    <xs:element name="getAllCadreAdminResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="cadreAdmins" type="tns:ListeCadreAdminsType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <!-- Définition du type ServiceStatus -->
+    <xs:complexType name="ServiceStatus">
+        <xs:sequence>
+            <xs:element name="status" type="xs:string"/>
+            <xs:element name="message" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Définition du type pour une liste de Cadres Administratifs -->
+    <xs:complexType name="ListeCadreAdminsType">
+        <xs:sequence>
+            <xs:element name="cadreAdmin" type="tns:CadreAdminType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <!-- Définition de la demande pour ajouter un Cadre Administratif -->
+    <xs:element name="addCadreAdminRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="cadreAdmin" type="tns:CadreAdminType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Définition de la réponse pour ajouter un Cadre Administratif -->
+    <xs:element name="addCadreAdminResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <!-- Définition de la réponse pour mettre à jour un CadreAdmin -->
+    <xs:element name="updateCadreAdminResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Définition de la demande pour supprimer un CadreAdmin par son ID -->
+    <xs:element name="deleteCadreAdminRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Définition de la réponse pour supprimer un CadreAdmin -->
+    <xs:element name="deleteCadreAdminResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>

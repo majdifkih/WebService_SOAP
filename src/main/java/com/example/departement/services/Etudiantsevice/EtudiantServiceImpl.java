@@ -28,7 +28,15 @@ public class EtudiantServiceImpl implements EtudiantService {
     }
 
     @Override
-    public void deleteEtudiant(Long id) {
-        etudiantRepository.deleteById(id);
+    public boolean deleteEtudiant(Long etudiantId) {
+        try {
+            // Logique de suppression de l'étudiant
+            etudiantRepository.deleteById(etudiantId);
+            return true; // Indique que la suppression a réussi
+        } catch (Exception e) {
+            // Gérer toute exception lors de la suppression
+            return false; // Indique que la suppression a échoué
+        }
     }
+
 }

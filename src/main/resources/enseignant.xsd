@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:tns="http://example.com/departement"
+           targetNamespace="http://example.com/departement"
+           elementFormDefault="qualified">
+
+    <!-- Définition du type Enseignant -->
+    <xs:complexType name="EnseignantType">
+        <xs:sequence>
+            <xs:element name="id" type="xs:long"/>
+            <xs:element name="nom" type="xs:string"/>
+            <xs:element name="prenom" type="xs:string"/>
+            <xs:element name="email" type="xs:string"/>
+            <xs:element name="specialite" type="xs:string"/>
+            <!-- Ajoutez d'autres éléments au besoin -->
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Définition de la demande pour récupérer un Enseignant par son ID -->
+    <xs:element name="getEnseignantByIdRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Définition de la réponse pour récupérer un Enseignant par son ID -->
+    <xs:element name="getEnseignantByIdResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="enseignant" type="tns:EnseignantType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+
+    <!-- Définition de la demande pour récupérer tous les Enseignants -->
+    <xs:element name="getAllEnseignantsRequest">
+        <xs:complexType>
+            <!-- Aucun paramètre nécessaire pour cette opération -->
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Définition de la réponse pour récupérer tous les Enseignants -->
+    <xs:element name="getAllEnseignantsResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="enseignants" type="tns:ListeEnseignantsType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Définition du type pour une liste d'Enseignants -->
+    <xs:complexType name="ListeEnseignantsType">
+        <xs:sequence>
+            <xs:element name="enseignant" type="tns:EnseignantType" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <!-- Définition de la demande pour ajouter un Enseignant -->
+    <xs:element name="addEnseignantRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="enseignant" type="tns:EnseignantType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Définition de la réponse pour ajouter un Enseignant -->
+    <xs:element name="addEnseignantResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Définition de la demande pour mettre à jour un Enseignant -->
+    <xs:element name="updateEnseignantRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="enseignant" type="tns:EnseignantType"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Définition de la réponse pour mettre à jour un Enseignant -->
+    <xs:element name="updateEnseignantResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Définition de la demande pour supprimer un Enseignant par son ID -->
+    <xs:element name="deleteEnseignantRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="id" type="xs:long"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <!-- Définition de la réponse pour supprimer un Enseignant -->
+    <xs:element name="deleteEnseignantResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="status" type="xs:string"/>
+                <xs:element name="message" type="xs:string"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+</xs:schema>
